@@ -1,0 +1,52 @@
+##Setup 
+You are a knowledge engineer working to build a causal graph for an alarm message system in patient monitoring. Think carefully and logically, explaining the reasons for your answer.
+
+##Available Information 
+The following variables are used to construct the causal graph for the patient monitoring alarm system.
+ 
+1. CVP (central venous pressure): a three-level factor with levels LOW, NORMAL and HIGH.
+2. PCWP (pulmonary capillary wedge pressure): a three-level factor with levels LOW, NORMAL and HIGH.
+3. HISTORY (history): a two-level factor with levels TRUE and FALSE.
+4. TPR (total peripheral resistance): a three-level factor with levels LOW, NORMAL and HIGH.
+5. BP (blood pressure): a three-level factor with levels LOW, NORMAL and HIGH.
+6. CO (cardiac output): a three-level factor with levels LOW, NORMAL and HIGH.
+7. HRBP (heart rate / blood pressure): a three-level factor with levels LOW, NORMAL and HIGH.
+8. HREKG (heart rate measured by an EKG monitor): a three-level factor with levels LOW, NORMAL and HIGH.
+9. HRSAT (heart rate / oxygen saturation): a three-level factor with levels LOW, NORMAL and HIGH.
+10. PAP (pulmonary artery pressure): a three-level factor with levels LOW, NORMAL and HIGH.
+11. SAO2 (arterial oxygen saturation): a three-level factor with levels LOW, NORMAL and HIGH.
+12. FIO2 (fraction of inspired oxygen): a two-level factor with levels LOW and NORMAL.
+13. PRESS (breathing pressure): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+14. EXPCO2 (expelled CO2): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+15. MINVOL (minimum volume): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+16. MINVOLSET (minimum volume set): a three-level factor with levels LOW, NORMAL and HIGH.
+17. HYPOVOLEMIA (hypovolemia): a two-level factor with levels TRUE and FALSE.
+18. LVFAILURE (left ventricular failure): a two-level factor with levels TRUE and FALSE.
+19. ANAPHYLAXIS (anaphylaxis): a two-level factor with levels TRUE and FALSE.
+20. INSUFFANESTH (insufficient anesthesia/analgesia): a two-level factor with levels TRUE and FALSE.
+21. PULMEMBOLUS (pulmonary embolus): a two-level factor with levels TRUE and FALSE.
+22. INTUBATION (intubation): a three-level factor with levels NORMAL, ESOPHAGEAL and ONESIDED.
+23. KINKEDTUBE (kinked tube): a two-level factor with levels TRUE and FALSE.
+24. DISCONNECT (disconnection): a two-level factor with levels TRUE and FALSE.
+25. LVEDVOLUME (left ventricular end-diastolic volume): a three-level factor with levels LOW, NORMAL and HIGH.
+26. STROKEVOLUME (stroke volume): a three-level factor with levels LOW, NORMAL and HIGH.
+27. CATECHOL (catecholamine): a two-level factor with levels NORMAL and HIGH.
+28. ERRLOWOUTPUT (error low output): a two-level factor with levels TRUE and FALSE.
+29. HR (heart rate): a three-level factor with levels LOW, NORMAL and HIGH.
+30. ERRCAUTER (electrocauter): a two-level factor with levels TRUE and FALSE.
+31. SHUNT (shunt): a two-level factor with levels NORMAL and HIGH.
+32. PVSAT (pulmonary venous oxygen saturation): a three-level factor with levels LOW, NORMAL and HIGH.
+33. ARTCO2 (arterial CO2): a three-level factor with levels LOW, NORMAL and HIGH.
+34. VENTALV (pulmonary alveoli ventilation): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+35. VENTLUNG (lung ventilation): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+36. VENTTUBE (ventilation tube): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+37. VENTMACH (ventilation machine): a four-level factor with levels ZERO, LOW, NORMAL and HIGH.
+
+# Task
+Create a list of direct causal relations between the given variables.
+
+Output all directed edges first, then output the rationale list.
+
+Section 1 - EDGES (one per line):Write each edge exactly as: <Cause>,<Effect>
+
+Section 2 - RATIONALES (same order as edges):For each edge, write the rationale behind each decision on its own line, matching the edge order from Section 1. Format each rationale line exactly as: <Cause>,<Effect>: <rationale>

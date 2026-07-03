@@ -1,0 +1,66 @@
+##Setup 
+You are a knowledge engineer working to build a causal graph for a study on mitigating risk of Adverse Pregnancy Outcomes (APOs). Think carefully and logically, explaining the reasons for your answer.
+
+##Available Information 
+The study data is collected on Nulliparous women and consists of variables representing clinical and demographic features that might influence the risk of Adverse Pregnancy outcomes. The variables being considered are as follows: 
+ 
+1. Age: The age of the subject at the start of the pregnancy, categorized into <=21, 21-35, >35 
+ 
+2. BMI: The BMI of the subject at the start of the pregnancy, categorized into <=18, 18-25, >25 
+ 
+3. HiBP: The boolean variable denoting whether the subject had High Blood Pressure at the start of the pregnancy 
+ 
+4. DiabHist: The boolean variable indicating family history of diabetes. Set true if either the father or the mother of the subject has type 2 diabetes. 
+ 
+5. HTNHist: The boolean variable denoting whether the subject's father, mother, brother, sister, half-brother, or half-sister has been diagnosed with hypertension. 
+ 
+6. METS: The boolean variable presence of physical activity at the start of pregnancy. Set true if greater than 450 Metabolic Equivalents of time 
+ 
+7. PCOS: Boolean variable indicating whether the subject had polycystic ovary syndrome at the start of pregnancy 
+ 
+8. PReEc: Boolean variable denoting whether the subject was diagnosed with Preeclampsia during the Pregnancy. This is defined as the presence of hypertension and signs of organ damage 
+ 
+9. NewHTN: Boolean variable denoting whether the subject was diagnosed with new hypertension during the pregnancy, but no signs of organ damage 
+ 
+10. PTB: Boolean variable denoting whether the subject delivered preterm. 
+ 
+11. GDM: Boolean variable denoting whether the subject was diagnosed with gestational diabetes during the pregnancy 
+ 
+12. Race: Categorical variable indicating the race of the subject: non-Hispanic Asian, non-Hispanic Black, non-Hispanic White, Hispanic, and Other 
+ 
+13. Smoking: Boolean variable indicating whether the subject smoked any tobacco products in the three months before the pregnancy
+
+## Forbidden edges
+For each entry X: Y1, Y2, ..., edges X -> Yi are forbidden.
+
+Age: DiabHist, HTNHist, Race, PCOS
+DiabHist: Age, Race, PCOS, HTNHist
+HTNHist: Age, Race, PCOS, DiabHist
+BMI: Age, Race, PCOS, DiabHist, HTNHist, Smoking, METS
+HiBP: Age, Race, PCOS, DiabHist, HTNHist
+PCOS: Age, Race, DiabHist, HTNHist
+PReEc: DiabHist, HTNHist, Age, HiBP, BMI, PCOS, Race, Smoking, METS, GDM, NewHTN
+NewHTN: Age, BMI, HiBP, METS, PCOS, HTNHist, Race, Smoking, DiabHist
+PTB: DiabHist, Age, BMI, HiBP, PReEc, PCOS, NewHTN, GDM, Race, HTNHist, METS, Smoking
+GDM: Race, Age, BMI, HiBP, Smoking, METS, HTNHist, DiabHist, PCOS
+Race: Age, PCOS, DiabHist, HTNHist
+Smoking: Age, Race, HTNHist, METS, DiabHist, PCOS
+METS: Age, Race, DiabHist, HTNHist
+
+## Data driven edges
+The causal graph must contain the following directed edges:
+< data driven edges>
+
+## Task
+Create a list of direct causal relations between the given variables, consistent with the constraints below: 
+
+1. No forbidden edges from the blacklist.
+2. No cycles (the final graph must be a DAG).
+3. Include all data driven edges.
+4. You can add any additional edges, as long as they satisfy constraints (1) and (2).
+
+Output all directed edges first, then output the rationale list.
+
+Section 1 - EDGES (one per line):Write each edge exactly as: <Cause>,<Effect>
+
+Section 2 - RATIONALES (same order as edges):For each edge, write the rationale behind each decision on its own line, matching the edge order from Section 1.Format each rationale line exactly as: <Cause>,<Effect>: <rationale>
