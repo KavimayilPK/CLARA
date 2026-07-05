@@ -4,7 +4,8 @@ Source code for the experiments reported in our BIBM paper.
 This repository covers **CLARA** running two constraint variants
 (**Full Graphs** and **Common Edges**), two LLM baselines
 (**LLM One Shot** and **LLM One Shot + Theory Refinement**),
-and two data-based baselines (**PC** and **FCI**).
+two data-based baselines (**PC** and **FCI**),
+and a non-LLM EDA baseline (**MIMIC** — Mutual-Information-Maximizing Input Clustering).
 
 ---
 
@@ -51,6 +52,9 @@ CLARA/
 │           ├── G0_Prompt.txt       # Initial prompt (no constraints)
 │           ├── G1_Prompt.txt       # Prompt — common-edges variant
 │           └── G1_FullGraphs.txt   # Prompt — full-graphs variant
+│
+├── mimic_alarm.py              # Non-LLM EDA baseline for the ALARM domain
+├── mimic_apo.py                # Non-LLM EDA baseline for the APO domain
 │
 └── LLM-guided-CBNs/
     ├── no_refinement_score.py      # Scores LLM graphs with StructuredBIC + TreeBIC
@@ -217,6 +221,19 @@ python learn_from_data_fci.py
 
 Edit the `data_file`, `sample_id`, and `domain` variables at the top of each script
 to point to your dataset and domain.
+
+---
+
+## Running the MIMIC Non-LLM EDA Baseline
+
+MIMIC (De Bonet et al., 1996) is an Estimation of Distribution Algorithm that uses a
+chain-ordered mutual-information density estimator in place of LLM calls.
+It uses the same TreeBIC scorer as CLARA and serves as a non-LLM EDA comparison.
+
+```bash
+python mimic_alarm.py   # ALARM domain
+python mimic_apo.py     # APO domain
+```
 
 ---
 
