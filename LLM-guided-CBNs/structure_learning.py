@@ -153,16 +153,9 @@ def compute_tree_bic(
     penalty = (
         -n_nodes
 
-        #- np.sum(np.log(n_nodes - node_depth[is_leaves == 0])) # original 
-        #- np.sum(np.log(np.maximum(1, n_parents - node_depth[is_leaves == 0]))) # per Nir Friedman paper
-        #- (1/dim) * np.sum(np.log( np.maximum(1, X.shape[1] - node_depth[is_leaves == 0]))) # prevent log 0 & scaling down
-        #- np.sum(np.log( X.shape[1] - node_depth[is_leaves == 0])) # After Feb 8 debug with Saurabh
-        
         - np.sum(np.log( np.maximum(1, X.shape[1] - node_depth[is_leaves == 0]))) # includes latest change and preventing log 0.
 
         - 0.5 * log(sample_size) * (n_leaves * (len(states) - 1))
-        
-        #- 0.5 * log(sample_size) * (n_leaves)
     )
     return log_likelihood + penalty
 
